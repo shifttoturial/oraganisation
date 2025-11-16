@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityCare Hospital | Quality Healthcare for All</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* 🌅 Hero Section */
+    .hero {
+      position: relative;
+      background: url('hospital-hero.jpg') center/cover no-repeat;
+      height: 85vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 15px auto;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    }
+
+    /* 🧾 Section Spacing */
+    section {
+      padding: 70px 0;
+    }
+
+    /* 💊 Services Cards */
+    #services .card {
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    #services .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* 🧾 Registration Form */
+    #register form input, #register form select, #register form textarea {
+      border-radius: 10px;
+    }
+
+    /* ⚓ Footer */
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+/* 🌅 Hero Section with Background Video Slider */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  z-index: 0;
+}
+
+/* The active video is visible */
+.hero-video.active {
+  opacity: 1;
+  z-index: 0;
+}
+
+/* Dark overlay for readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 15px auto;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
+
+/* Smooth fade-in for text */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="#">CityCare Hospital</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#register">Registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+ <!-- ✅ Hero Section with Background Video Slider -->
+<section id="hero" class="hero">
+    <!-- Multiple videos for background rotation -->
+    <video class="hero-video active" autoplay muted loop playsinline>
+      <source src="ICU Design-Hospital (Intensive Care Unit).mp4" type="video/mp4">
+    </video>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="Pin on Bobs.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="#medicine#surgery#anesthesia#ventilador#ga#criticalcare.mp4" type="video/mp4">
+    </video>
+  
+    <!-- Dark overlay for readability -->
+    <script>
+        // 🎞️ Video Slider: change video every ~7 seconds
+        const videos = document.querySelectorAll(".hero-video");
+        let current = 0;
+        const slideDuration = 7000; // 7 seconds per video
+        const totalDuration = 20000; // total ~20s cycle
+      
+        setInterval(() => {
+          videos[current].classList.remove("active");
+          current = (current + 1) % videos.length;
+          videos[current].classList.add("active");
+        }, slideDuration);
+      </script>
+      
+    <div class="hero-overlay"></div>
+  
+    <!-- Hero content -->
+    <div class="hero-content text-center">
+      <h1>Welcome to CityCare Hospital</h1>
+      <p>Providing compassionate healthcare and advanced medical services for your well-being.</p>
+      <a href="#register" class="btn btn-light btn-lg mt-3">Register Now</a>
+    </div>
+  </section>
+  
+  
+    <div class="hero-overlay"></div>
+  
+  
+
+  <!-- ✅ About Section -->
+  <section id="about" class="bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+          <img src="852d3ae66e2f216bcc1e074c7e0da8da.jpg" class="img-fluid rounded shadow" alt="Hospital Building">
+        </div>
+        <div class="col-md-6">
+          <h2 class="fw-bold text-primary mb-3">About CityCare Hospital</h2>
+          <p>CityCare Hospital is a modern healthcare facility providing high-quality medical care. Our team of doctors, nurses, and specialists are dedicated to delivering patient-centered healthcare in a safe and supportive environment.</p>
+          <p>We offer 24/7 emergency services, specialized care units, and modern diagnostic equipment for all your healthcare needs.</p>
+          <a href="#services" class="btn btn-primary mt-3">Explore Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Services Section -->
+  <section id="services" class="text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Our Medical Services</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="6e0d149d567f003fa37d9681fb28de4e.jpg" class="card-img-top" alt="Emergency Care">
+            <div class="card-body">
+              <h5 class="card-title">Emergency Care</h5>
+              <p class="card-text">Round-the-clock emergency department equipped to handle critical cases efficiently.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="515b70475dad698b2f82ef15d88a5377.jpg" class="card-img-top" alt="Pediatrics">
+            <div class="card-body">
+              <h5 class="card-title">Pediatrics</h5>
+              <p class="card-text">Specialized healthcare for children, ensuring healthy growth and development.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <img src="0e899e6fab33b64a674af5d230346277.jpg" class="card-img-top" alt="Surgery">
+            <div class="card-body">
+              <h5 class="card-title">Surgery & Operations</h5>
+              <p class="card-text">Fully equipped surgical units and expert surgeons for safe and advanced procedures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Registration System -->
+  <section id="register" class="bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-4 text-primary">Patient Registration System</h2>
+      <p>Register as a new patient to access our services and receive personalized healthcare.</p>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+          <form action="https://formsubmit.co/your-email@example.com" method="POST">
+            <input type="hidden" name="_subject" value="New Patient Registration from CityCare Hospital">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="col-md-6">
+                <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+              </div>
+              <div class="col-md-6">
+                <select name="department" class="form-select" required>
+                  <option value="">Select Department</option>
+                  <option>Emergency</option>
+                  <option>Pediatrics</option>
+                  <option>Cardiology</option>
+                  <option>Orthopedics</option>
+                  <option>General Surgery</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <input type="date" name="appointment_date" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <textarea name="message" class="form-control" rows="4" placeholder="Additional Details (Optional)"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4 px-5">Submit Registration</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Contact Section -->
+  <section id="contact" class="text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-3">Contact Us</h2>
+      <p>We’re here to help. Contact us for inquiries or emergencies.</p>
+      <p><strong>📍 Address:</strong> Kampala Road, Uganda</p>
+      <p><strong>📞 Phone:</strong> +256 744 340309</p>
+      <p><strong>📧 Email:</strong> info@citycarehospital.com</p>
+    </div>
+  </section>
+
+  <!-- ✅ Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p class="mb-1">© 2025 CityCare Hospital. All Rights Reserved.</p>
+      <div>
+        <a href="#">Facebook</a> |
+        <a href="#">Twitter</a> |
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
